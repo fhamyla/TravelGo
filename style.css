@@ -1,0 +1,341 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    font-size: 2.6rem;
+}
+li,
+button,
+input,
+p,
+label {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 4.8rem;
+}
+h3 {
+    font-size: 3rem;
+    font-weight: normal;
+}
+h4,
+h5 {
+    font-size: 2.8rem;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-head {
+    background: rgb(70, 70, 90);
+    color: white;
+    position: sticky;
+    top: 0px;
+    z-index: 3;
+}
+
+button {
+    padding: 2rem 6rem;
+    background: rgb(78, 126, 197);
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out;
+}
+
+button:hover {
+    background: rgb(42, 68, 107);
+}
+
+nav {
+    padding: 2rem;
+    display: flex;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    min-height: 10vh;
+    flex-wrap: wrap;
+}
+
+nav ul {
+    display: flex;
+    flex: 1 1 40rem;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.lo:hover {
+    background-color: black;
+    padding: 0.5rem 0.5rem;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.be:hover {
+    background-color: black;
+    padding: 0.5rem 0.5rem;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.co:hover {
+    background-color: black;
+    padding: 0.5rem 0.5rem;
+    border-radius: 20px 20px 20px 20px;
+}
+
+#logo {
+    flex: 2 1 40rem;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 400;
+}
+
+.hero {
+    min-height: 90vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), transparent), 
+     url(/img/luca-bravo-fvCoCQ3q5Ho-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.hero h3 {
+    padding: 5rem;
+}
+
+#locations {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
+     url(/img/sunisa-misa-iPIIeHE5p4o-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.locations-head {
+    width: 90%;
+    margin: auto;
+    position: relative;
+}
+
+.locations-head h2 {
+    padding: 1rem 0rem;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5rem;
+    position: relative;
+    z-index: 3;
+}
+
+.locations-head h3 {
+    padding: 4rem 0rem;
+    background: linear-gradient(#131c27, #663b34);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ht {
+    position: relative;
+    z-index: 3;
+}
+
+.cloud {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+
+.moving-cloud-1 {
+    z-index: 2;
+    animation: cloudAnimation 3s infinite alternate ease-in-out;
+}
+
+.moving-cloud-2 {
+    top: 20%;
+    right: 10%;
+    opacity: 0.5;
+    z-index: 1;
+    animation: cloudAnimation 3.5s infinite alternate ease-in-out;
+}
+
+@keyframes cloudAnimation {
+    from {
+        transform: translate(10%, -10%);
+    }
+    to {
+        transform: translate(0%, 0%);
+    }
+}
+
+/* benefits */
+
+#benefits {
+    min-height: auto;
+}
+
+.benefits-head {
+    background: #523312;
+    padding: 3rem;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.benefits-head {
+    padding: 1rem;
+}
+
+.cards {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    min-height: 70vh;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1 1 25rem;
+    min-height: 40vh;
+    margin: 2rem 5rem;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.cards img {
+    max-width: 30%;
+    margin: 1rem;
+}
+
+.card h4,
+.card p {
+    padding: 1rem;
+}
+
+.card-icon {
+    background: #523312;
+}
+
+#contact {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), transparent),
+    url("img/pexels-jarod-barton-4863968.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper {
+    background: rgb(19, 28, 39, 0.5);
+    width: 60%;
+    color: white;
+    border-radius: 20px;
+}
+
+.form-head {
+    text-align: center;
+    padding: 4rem;
+}
+
+.name-form,
+.email-form {
+    padding: 3rem;
+    text-align: center;
+}
+
+.form-wrapper label {
+    margin: 0rem 3rem;
+}
+
+.form-wrapper button {
+    width: 100%;
+    padding: 2rem;
+    margin-top: 8rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.form-wrapper input {
+    padding: 1rem 3rem;
+}
+
+footer {
+    color: white;
+    background: rgb(70, 70, 90);
+}
+
+.footer-wrapper {
+    display: flex;
+    padding: 2rem;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    min-height: 10vh;
+    flex-wrap: wrap;
+}
+
+footer h5 {
+    flex: 1 1 40rem;
+}
+
+footer ul {
+    display: flex;
+    list-style: none;
+    flex: 1 1 40rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.yt img,
+.ig img,
+.fb img {
+    width: 40px;
+    height: 40px;
+}
+
+/* media query */
+@media screen and (max-width: 932px) {
+    html {
+        font-size: 45%;
+    }
+    nav {
+        text-align: center;
+    }
+    #logo {
+        padding: 2rem;
+    }
+    .form-wrapper {
+        width: 100%;
+    }
+    footer {
+        text-align: center;
+    }
+    footer h5 {
+        padding-bottom: 3rem;
+    }
+}
