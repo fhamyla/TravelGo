@@ -284,6 +284,7 @@ nav ul {
 .form-wrapper input {
     padding: 1rem 3rem;
     border-radius: 20px;
+    color: #f0ffff;
     outline: none;
     font-size: 2.2em;
     border: 2px solid #f0ffff;
