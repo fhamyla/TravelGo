@@ -255,6 +255,7 @@ nav ul {
     width: 60%;
     color: white;
     border-radius: 20px;
+    transition: 0.2s ease;
 }
 
 .form-head {
@@ -293,6 +294,22 @@ nav ul {
     z-index: 1111;
 }
 
+input:focus,
+input:valid {
+    color: #ffffff;
+    border: 4px solid rgb(106, 106, 141);
+}
+
+input:focus + .name-form,
+input:valid + .email-form {
+    color: #000000;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    transform: translate(-15px, -16px) scale(0.88);
+    z-index: 1111;
+}
+
 footer {
     color: white;
     background: rgb(70, 70, 90);
@@ -306,6 +323,7 @@ footer {
     align-items: center;
     min-height: 10vh;
     flex-wrap: wrap;
+    transition: 0.1s ease;
 }
 
 footer h5 {
