@@ -270,18 +270,18 @@ nav ul {
     margin-bottom: 10px;
     padding: 3rem;
     text-align: center;
-    align-items: center;
+    position: relative;
 }
 
 .form-wrapper label {
     position: absolute;
+    top: 50%;
     margin: 0rem 3rem;
     transform: translateY(-50%);
     font-size: 16px;
     color: #999;
     transition: top 0.3s, font-size 0.3s, color 0.3s;
     pointer-events: none;
-
 }
 
 .form-wrapper button {
@@ -294,31 +294,26 @@ nav ul {
 
 .form-wrapper input {
     padding: 1rem 3rem;
-    border-radius: 20px;
+    border-radius: 10px;
     color: #f0ffff;
     outline: none;
     font-size: 2.2em;
     border: 2px solid #f0ffff;
     background: transparent;
-    transition: 0.3s ease;
-    z-index: 1111;
+    transition: border-color 0.3s ease;
 }
 
 input:focus,
 input:valid {
-    border-color: rgb(106, 106, 141);
+    outline: none;
+    border-color: #007bff;
 }
 
-input:focus + .name-form,
-input:valid + .email-form {
-    top: 10px;
-    color: #000000;
+input:focus + label,
+input:valid + label {
+    top: 0;
     font-size: 12px;
-    height: 30px;
-    line-height: 30px;
-    padding: 0 12px;
-    transform: translate(-15px, -16px) scale(0.88);
-    z-index: 1111;
+    color: #007bff;
     background: #fff;
 }
 
