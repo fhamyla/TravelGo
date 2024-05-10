@@ -262,17 +262,26 @@ nav ul {
 .form-head {
     text-align: center;
     padding: 4rem;
+    position: relative;
 }
 
 .name-form,
 .email-form {
+    margin-bottom: 10px;
     padding: 3rem;
     text-align: center;
     align-items: center;
 }
 
 .form-wrapper label {
+    position: absolute;
     margin: 0rem 3rem;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #999;
+    transition: top 0.3s, font-size 0.3s, color 0.3s;
+    pointer-events: none;
+
 }
 
 .form-wrapper button {
@@ -291,24 +300,26 @@ nav ul {
     font-size: 2.2em;
     border: 2px solid #f0ffff;
     background: transparent;
-    transition: 0.1s ease;
+    transition: 0.3s ease;
     z-index: 1111;
 }
 
 input:focus,
 input:valid {
-    color: #ffffff;
-    border: 4px solid rgb(106, 106, 141);
+    border-color: rgb(106, 106, 141);
 }
 
 input:focus + .name-form,
 input:valid + .email-form {
+    top: 10px;
     color: #000000;
+    font-size: 12px;
     height: 30px;
     line-height: 30px;
     padding: 0 12px;
     transform: translate(-15px, -16px) scale(0.88);
     z-index: 1111;
+    background: #fff;
 }
 
 footer {
