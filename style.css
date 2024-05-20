@@ -303,8 +303,7 @@ nav ul {
     transition: border-color 0.3s ease;
 }
 
-input:focus,
-input:valid {
+input:focus{
     outline: none;
     border-color: #007bff;
 }
