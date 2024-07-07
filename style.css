@@ -276,7 +276,7 @@ nav ul {
 .email-form label{
     position: absolute;
     top: 50%;
-    left: 35%;
+    left: 30%;
     margin: 0rem 3rem;
     transform: translateY(-50%);
     font-size: 16px;
@@ -316,7 +316,7 @@ nav ul {
     top: 25%;
     font-size: 14px;
     color: #007bff;
-    background: #202735;
+    background: #1E2532;
 }
 
 .email-form input:focus + label,
@@ -324,7 +324,7 @@ nav ul {
     top: 25%;
     font-size: 14px;
     color: #007bff;
-    background: #252B39;
+    background: #242A37;
 }
 
 footer {
