@@ -79,22 +79,22 @@ nav ul {
     align-items: center;
 }
 
-.lo:hover {
-    background-color: black;
-    padding: 0.5rem 0.5rem;
-    border-radius: 20px 20px 20px 20px;
+
+.lo, .be, .co {
+    position: relative;
+    padding: 0.5rem;
+    text-decoration: none;
 }
 
-.be:hover {
-    background-color: black;
-    padding: 0.5rem 0.5rem;
-    border-radius: 20px 20px 20px 20px;
-}
-
-.co:hover {
-    background-color: black;
-    padding: 0.5rem 0.5rem;
-    border-radius: 20px 20px 20px 20px;
+.lo:hover::after, .be:hover::after, .co:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background-color: #596a72;
+    border-radius: 1px;
 }
 
 #logo {
