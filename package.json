@@ -20,6 +20,7 @@
   "homepage": "https://github.com/fhamyla/TravelGo#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^17.2.0",
     "express": "^4.21.2",
     "nodemailer": "^6.10.0"
   }

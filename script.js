@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const name = document.querySelector("input[name='name']").value;
         const email = document.querySelector("input[name='email']").value;
 
-        const response = await fetch("http://localhost:5000/send", {
+        const response = await fetch("/.netlify/functions/send", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

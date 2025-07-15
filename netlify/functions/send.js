@@ -1,21 +1,24 @@
-const express = require("express");
-const nodemailer = require("nodemailer");
-const cors = require("cors");
-require('dotenv').config();
+const nodemailer = require('nodemailer');
 
-const app = express();
-app.use(express.json());
-app.use(cors());
+exports.handler = async function(event, context) {
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            body: JSON.stringify({ message: 'Method Not Allowed' })
+        };
+    }
 
-app.post("/send", async (req, res) => {
-    const { name, email } = req.body;
+    const { name, email } = JSON.parse(event.body);
 
     if (!name || !email) {
-        return res.status(400).json({ message: "All fields are required!" });
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ message: 'All fields are required!' })
+        };
     }
 
     let transporter = nodemailer.createTransport({
-        service: "gmail",
+        service: 'gmail',
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
@@ -24,8 +27,8 @@ app.post("/send", async (req, res) => {
 
     let mailOptions = {
         from: email,
-        to: "fhamyla.devera@gmail.com",
-        subject: "New Contact Form Submission",
+        to: process.env.EMAIL_USER,
+        subject: 'New Contact Form Submission',
         text: `Name: ${name}\nEmail: ${email}`,
         html: `
             <div style=\"font-family: Arial, sans-serif; color: #222;\">
@@ -47,11 +50,14 @@ app.post("/send", async (req, res) => {
 
     try {
         await transporter.sendMail(mailOptions);
-        res.json({ message: "Email sent successfully!" });
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ message: 'Email sent successfully!' })
+        };
     } catch (error) {
-        res.status(500).json({ message: "Error sending email", error });
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ message: 'Error sending email', error: error.toString() })
+        };
     }
-});
-
-const PORT = 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}; 
