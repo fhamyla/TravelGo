@@ -1,3 +1,6 @@
+// server.js
+// Copyright (c) 2024 fhamyla
+// Licensed under the MIT License. See LICENSE file in the project root for full license information.
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
