@@ -2,7 +2,7 @@
 
 TravelGo is a web-based travel platform designed to help users plan, book, and manage their travel experiences. The project features a user-friendly interface, contact form, and visually appealing assets to enhance the travel planning process.
 
-https://fhamylatravelgo.netlify.app/
+https://fhamylatravelgo.netlify.app/ 
 
 ## Features
 - **Modern UI**: Clean and responsive design for seamless user experience.
