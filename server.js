@@ -11,8 +11,26 @@ require('dotenv').config();
 
 const app = express();
 app.use(express.json({ limit: "10kb" }));
-app.use(cors());
+
+const allowedOrigins = [
+    "http://localhost:8888",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "https://fhamylatravelgo.netlify.app",
+];
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    methods: ["POST"],
+}));
+
 app.use(helmet());
+
 const limiter = rateLimit({
     windowMs: 5 * 60 * 1000,
     max: 3,
@@ -25,6 +43,7 @@ app.post("/send", [
     body('email').isEmail().normalizeEmail().withMessage('Valid email is required')
 ], async (req, res) => {
 
+    // Honeypot check
     if (req.body.website) {
         return res.status(400).json({ message: "Bot detected" });
     }
@@ -84,7 +103,8 @@ app.post("/send", [
         await transporter.sendMail(mailOptions);
         res.json({ message: "Email sent successfully!" });
     } catch (error) {
-        res.status(500).json({ message: "Error sending email", error });
+        console.error("Mail error:", error);
+        res.status(500).json({ message: "Error sending email" });
     }
 });
 
