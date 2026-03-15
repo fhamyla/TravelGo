@@ -2,20 +2,51 @@
 // Copyright (c) 2024 fhamyla
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
 const express = require("express");
+const helmet = require("helmet");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
+const { body, validationResult } = require("express-validator");
 require('dotenv').config();
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: "10kb" }));
 app.use(cors());
+app.use(helmet());
+const limiter = rateLimit({
+    windowMs: 5 * 60 * 1000,
+    max: 3,
+    message: "Too many requests from this IP, please try again later."
+});
+app.use('/send', limiter);
 
-app.post("/send", async (req, res) => {
+app.post("/send", [
+    body('name').trim().isLength({ min: 1 }).withMessage('Name is required').isLength({ max: 100 }).withMessage('Name must be less than 100 characters'),
+    body('email').isEmail().normalizeEmail().withMessage('Valid email is required')
+], async (req, res) => {
+
+    if (req.body.website) {
+        return res.status(400).json({ message: "Bot detected" });
+    }
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ message: "Validation failed", errors: errors.array() });
+    }
+
     const { name, email } = req.body;
 
-    if (!name || !email) {
-        return res.status(400).json({ message: "All fields are required!" });
+    function escapeHTML(str) {
+        return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
+
+    const safeName = escapeHTML(name);
+    const safeEmail = escapeHTML(email);
 
     let transporter = nodemailer.createTransport({
         service: "gmail",
@@ -26,24 +57,25 @@ app.post("/send", async (req, res) => {
     });
 
     let mailOptions = {
-        from: email,
-        to: "fhamyla.devera@gmail.com",
+        from: process.env.EMAIL_USER,
+        replyTo: safeEmail,
+        to: process.env.EMAIL_USER,
         subject: "New Contact Form Submission",
-        text: `Name: ${name}\nEmail: ${email}`,
+        text: `Name: ${safeName}\nEmail: ${safeEmail}`,
         html: `
-            <div style=\"font-family: Arial, sans-serif; color: #222;\">
+            <div style="font-family: Arial, sans-serif; color: #222;">
                 <h2>New Contact Form Submission</h2>
-                <table style=\"border-collapse: collapse;\">
+                <table style="border-collapse: collapse;">
                     <tr>
-                        <td style=\"padding: 8px; font-weight: bold;\">Name:</td>
-                        <td style=\"padding: 8px;\">${name}</td>
+                        <td style="padding: 8px; font-weight: bold;">Name:</td>
+                        <td style="padding: 8px;">${safeName}</td>
                     </tr>
                     <tr>
-                        <td style=\"padding: 8px; font-weight: bold;\">Email:</td>
-                        <td style=\"padding: 8px;\">${email}</td>
+                        <td style="padding: 8px; font-weight: bold;">Email:</td>
+                        <td style="padding: 8px;">${safeEmail}</td>
                     </tr>
                 </table>
-                <p style=\"margin-top: 20px; color: #888; font-size: 0.9em;\">This message was sent from the TravelGo contact form.</p>
+                <p style="margin-top: 20px; color: #888; font-size: 0.9em;">This message was sent from the TravelGo contact form.</p>
             </div>
         `
     };
