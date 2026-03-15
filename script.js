@@ -1,7 +1,6 @@
 // script.js
 // Copyright (c) 2024 fhamyla
 // Licensed under the MIT License. See LICENSE file in the project root for full license information.
-// script.js
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     let submitCount = 0;
